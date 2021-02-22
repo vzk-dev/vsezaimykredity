@@ -1,0 +1,149 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Chunks' => 
+    array (
+      '5d5f6e5d9e9c2fa950107e9794e28d49' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modChunk',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"tpl.goodStar","description":"\\u0427\\u0430\\u043d\\u043a \\u0434\\u043b\\u044f \\u0432\\u044b\\u0432\\u043e\\u0434\\u0430 \\u0440\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433\\u0430","editor_type":0,"category":0,"cache_type":0,"snippet":"<div itemscope itemtype=\\"http:\\/\\/schema.org\\/Product\\">\\n    <p itemprop=\\"name\\" class=\\"rating-hide\\">[[+name]]<\\/p> <!-- \\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u041f\\u0440\\u043e\\u0434\\u0443\\u043a\\u0442\\u0430 -->\\n\\n    <select class=\\"example\\" data-thread=\\"[[+id]]\\" data-current-rating=\\"[[+current_rating]]\\" data-group=\\"[[+group]]\\" data-readonly=\\"[[+readonly]]\\">\\n        <option value=\\"\\"><\\/option>\\n        <option value=\\"1\\">1<\\/option>\\n        <option value=\\"2\\">2<\\/option>\\n        <option value=\\"3\\">3<\\/option>\\n        <option value=\\"4\\">4<\\/option>\\n        <option value=\\"5\\">5<\\/option>\\n    <\\/select>\\n    <span>[[+user_rating:notempty=`\\u0412\\u0430\\u0448 \\u0433\\u043e\\u043b\\u043e\\u0441: [[+user_rating]]`]]<\\/span>\\n    <span>\\u0427\\u0438\\u0441\\u043b\\u043e \\u0433\\u043e\\u043b\\u043e\\u0441\\u043e\\u0432: [[+count_voite]]<\\/span>\\n\\n    <div itemscope itemtype=\\"http:\\/\\/schema.org\\/AggregateRating\\" itemprop=\\"aggregateRating\\" class=\\"rating-hide\\"> <!-- \\u041d\\u0430\\u0447\\u0430\\u043b\\u043e \\u0420\\u0415\\u0419\\u0422\\u0418\\u041d\\u0413\\u0410 -->\\n        <div itemprop=\\"ratingValue\\">[[+current_rating]]<\\/div> <!-- \\u0417\\u043d\\u0430\\u0447\\u0435\\u043d\\u0438\\u0435 \\u0440\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433\\u0430 -->\\n        <div itemprop=\\"bestRating\\">5<\\/div> <!-- \\u041c\\u0430\\u043a\\u0441\\u0438\\u043c\\u0430\\u043b\\u044c\\u043d\\u043e\\u0435 \\u0417\\u043d\\u0430\\u0447\\u0435\\u043d\\u0438\\u0435 \\u0440\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433\\u0430 -->\\n        <div itemprop=\\"worstRating\\">1<\\/div> <!-- \\u041c\\u0438\\u043d\\u0438\\u043c\\u0430\\u043b\\u044c\\u043d\\u043e\\u0435 \\u0417\\u043d\\u0430\\u0447\\u0435\\u043d\\u0438\\u0435 \\u0440\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433\\u0430 -->\\n        <div itemprop=\\"ratingCount\\">[[+count_voite]]<\\/div> <!-- \\u0427\\u0438\\u0441\\u043b\\u043e \\u0433\\u043e\\u043b\\u043e\\u0441\\u043e\\u0432 -->\\n    <\\/div><!-- \\u041a\\u043e\\u043d\\u0435\\u0446 \\u0420\\u0415\\u0419\\u0422\\u0418\\u041d\\u0413\\u0410 -->\\n<\\/div>","locked":0,"properties":null,"static":0,"static_file":"core\\/components\\/goodstar\\/elements\\/chunks\\/item.tpl","content":"<div itemscope itemtype=\\"http:\\/\\/schema.org\\/Product\\">\\n    <p itemprop=\\"name\\" class=\\"rating-hide\\">[[+name]]<\\/p> <!-- \\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u041f\\u0440\\u043e\\u0434\\u0443\\u043a\\u0442\\u0430 -->\\n\\n    <select class=\\"example\\" data-thread=\\"[[+id]]\\" data-current-rating=\\"[[+current_rating]]\\" data-group=\\"[[+group]]\\" data-readonly=\\"[[+readonly]]\\">\\n        <option value=\\"\\"><\\/option>\\n        <option value=\\"1\\">1<\\/option>\\n        <option value=\\"2\\">2<\\/option>\\n        <option value=\\"3\\">3<\\/option>\\n        <option value=\\"4\\">4<\\/option>\\n        <option value=\\"5\\">5<\\/option>\\n    <\\/select>\\n    <span>[[+user_rating:notempty=`\\u0412\\u0430\\u0448 \\u0433\\u043e\\u043b\\u043e\\u0441: [[+user_rating]]`]]<\\/span>\\n    <span>\\u0427\\u0438\\u0441\\u043b\\u043e \\u0433\\u043e\\u043b\\u043e\\u0441\\u043e\\u0432: [[+count_voite]]<\\/span>\\n\\n    <div itemscope itemtype=\\"http:\\/\\/schema.org\\/AggregateRating\\" itemprop=\\"aggregateRating\\" class=\\"rating-hide\\"> <!-- \\u041d\\u0430\\u0447\\u0430\\u043b\\u043e \\u0420\\u0415\\u0419\\u0422\\u0418\\u041d\\u0413\\u0410 -->\\n        <div itemprop=\\"ratingValue\\">[[+current_rating]]<\\/div> <!-- \\u0417\\u043d\\u0430\\u0447\\u0435\\u043d\\u0438\\u0435 \\u0440\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433\\u0430 -->\\n        <div itemprop=\\"bestRating\\">5<\\/div> <!-- \\u041c\\u0430\\u043a\\u0441\\u0438\\u043c\\u0430\\u043b\\u044c\\u043d\\u043e\\u0435 \\u0417\\u043d\\u0430\\u0447\\u0435\\u043d\\u0438\\u0435 \\u0440\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433\\u0430 -->\\n        <div itemprop=\\"worstRating\\">1<\\/div> <!-- \\u041c\\u0438\\u043d\\u0438\\u043c\\u0430\\u043b\\u044c\\u043d\\u043e\\u0435 \\u0417\\u043d\\u0430\\u0447\\u0435\\u043d\\u0438\\u0435 \\u0440\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433\\u0430 -->\\n        <div itemprop=\\"ratingCount\\">[[+count_voite]]<\\/div> <!-- \\u0427\\u0438\\u0441\\u043b\\u043e \\u0433\\u043e\\u043b\\u043e\\u0441\\u043e\\u0432 -->\\n    <\\/div><!-- \\u041a\\u043e\\u043d\\u0435\\u0446 \\u0420\\u0415\\u0419\\u0422\\u0418\\u041d\\u0413\\u0410 -->\\n<\\/div>","file":"item"}',
+        'guid' => '9a9251146a3daa2b3e93cbc60df82d96',
+        'native_key' => 0,
+        'signature' => 'fdc40e4ddbd88ed757faabd28dffb92e',
+      ),
+    ),
+    'Snippets' => 
+    array (
+      '34936dc8302558d19d652a545f46367e' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"goodStar","description":"\\u0421\\u043d\\u0438\\u043f\\u0435\\u0442 \\u0434\\u043b\\u044f \\u0432\\u044b\\u0432\\u043e\\u0434\\u0430 \\u0437\\u0432\\u0435\\u0437\\u0434\\u043d\\u043e\\u0433\\u043e \\u0440\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433\\u0430","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/** @var modX $modx *\\/\\n\\/** @var array $scriptProperties *\\/\\n\\/** @var goodStar $goodStar *\\/\\n$goodStar = $modx->getService(\'goodStar\', \'goodStar\', $modx->getOption(\'goodstar_core_path\' ,\'\', MODX_CORE_PATH . \'components\\/goodstar\\/\') . \'model\\/\', $scriptProperties);\\nif (!$goodStar) {\\n    return \'Could not load goodStar class!\';\\n}\\n\\n$thread = !empty($thread) ? $thread : $modx->resource->id;\\n$tpl = !empty($tpl) ? $tpl : \'tpl.goodStar\';\\n$group = !empty($group) ? $group : \'\';\\n$conclusion = !empty($conclusion) ? $conclusion : \'wilson\';\\n$onlyAuth = !empty($onlyAuth) ? $onlyAuth : false;\\n$readonly = !empty($readonly) ? $readonly : false;\\n\\n$current_rating = $goodStar->getCurrentRating($thread, $conclusion);\\n$count_voite = $goodStar->getCountVoite($thread);\\n\\n$readonly  = $goodStar->getReadOnly($thread, $readonly, $onlyAuth);\\n\\n$arr = array(\\n    \'id\' => $thread,\\n    \'current_rating\' => $current_rating,\\n    \'user_rating\' => $goodStar->getCurrentRating($thread, \'user\'),\\n    \'group\' => $group,\\n    \'count_voite\' => $count_voite,\\n    \'readonly\' => $readonly,\\n    \'name\' => $goodStar->getName($thread)\\n);\\n\\n\\/**\\n * @var pdoTools $pdoTools\\n *\\/\\nif($pdoTools = $modx->getService(\'pdotools\')){\\n    $output = $pdoTools->getChunk($tpl, $arr);\\n}else{\\n    $output = $modx->getChunk($tpl, $arr);\\n}\\n\\nreturn $output;","locked":0,"properties":"a:5:{s:6:\\"thread\\";a:7:{s:4:\\"name\\";s:6:\\"thread\\";s:4:\\"desc\\";s:20:\\"goodstar_prop_thread\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:19:\\"goodstar:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:5:\\"group\\";a:7:{s:4:\\"name\\";s:5:\\"group\\";s:4:\\"desc\\";s:19:\\"goodstar_prop_group\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:19:\\"goodstar:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:3:\\"tpl\\";a:7:{s:4:\\"name\\";s:3:\\"tpl\\";s:4:\\"desc\\";s:17:\\"goodstar_prop_tpl\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:12:\\"tpl.goodStar\\";s:7:\\"lexicon\\";s:19:\\"goodstar:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:10:\\"conclusion\\";a:7:{s:4:\\"name\\";s:10:\\"conclusion\\";s:4:\\"desc\\";s:24:\\"goodstar_prop_conclusion\\";s:4:\\"type\\";s:4:\\"text\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:6:\\"wilson\\";s:7:\\"lexicon\\";s:19:\\"goodstar:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:8:\\"readonly\\";a:7:{s:4:\\"name\\";s:8:\\"readonly\\";s:4:\\"desc\\";s:22:\\"goodstar_prop_readonly\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:19:\\"goodstar:properties\\";s:4:\\"area\\";s:0:\\"\\";}}","moduleguid":"","static":0,"static_file":"core\\/components\\/goodstar\\/elements\\/snippets\\/goodstar.php","content":"\\/** @var modX $modx *\\/\\n\\/** @var array $scriptProperties *\\/\\n\\/** @var goodStar $goodStar *\\/\\n$goodStar = $modx->getService(\'goodStar\', \'goodStar\', $modx->getOption(\'goodstar_core_path\' ,\'\', MODX_CORE_PATH . \'components\\/goodstar\\/\') . \'model\\/\', $scriptProperties);\\nif (!$goodStar) {\\n    return \'Could not load goodStar class!\';\\n}\\n\\n$thread = !empty($thread) ? $thread : $modx->resource->id;\\n$tpl = !empty($tpl) ? $tpl : \'tpl.goodStar\';\\n$group = !empty($group) ? $group : \'\';\\n$conclusion = !empty($conclusion) ? $conclusion : \'wilson\';\\n$onlyAuth = !empty($onlyAuth) ? $onlyAuth : false;\\n$readonly = !empty($readonly) ? $readonly : false;\\n\\n$current_rating = $goodStar->getCurrentRating($thread, $conclusion);\\n$count_voite = $goodStar->getCountVoite($thread);\\n\\n$readonly  = $goodStar->getReadOnly($thread, $readonly, $onlyAuth);\\n\\n$arr = array(\\n    \'id\' => $thread,\\n    \'current_rating\' => $current_rating,\\n    \'user_rating\' => $goodStar->getCurrentRating($thread, \'user\'),\\n    \'group\' => $group,\\n    \'count_voite\' => $count_voite,\\n    \'readonly\' => $readonly,\\n    \'name\' => $goodStar->getName($thread)\\n);\\n\\n\\/**\\n * @var pdoTools $pdoTools\\n *\\/\\nif($pdoTools = $modx->getService(\'pdotools\')){\\n    $output = $pdoTools->getChunk($tpl, $arr);\\n}else{\\n    $output = $modx->getChunk($tpl, $arr);\\n}\\n\\nreturn $output;","file":"goodstar"}',
+        'guid' => '5eca7301293ad11b7069b963fbdf26b2',
+        'native_key' => 0,
+        'signature' => '009c1047f20a1bd0241cc911abe84936',
+      ),
+    ),
+    'Plugins' => 
+    array (
+      'c5d9c3cbdea9db61648fd53e796dc70b' => 
+      array (
+        'unique_key' => 'name',
+        'preserve_keys' => false,
+        'update_object' => true,
+        'related_objects' => 
+        array (
+          'PluginEvents' => 
+          array (
+            '28d34b67e908c760db4d5ebf1272f803' => 
+            array (
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnLoadWebDocument","priority":0,"propertyset":0}',
+              'guid' => '200821c63d2434a1be7c26e6b5cf8d3d',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnLoadWebDocument',
+              ),
+              'signature' => '2aeaed47c384ead1e8af9f36f4fd275f',
+            ),
+          ),
+        ),
+        'related_object_attributes' => 
+        array (
+          'PluginEvents' => 
+          array (
+            'preserve_keys' => true,
+            'update_object' => true,
+            'unique_key' => 
+            array (
+              0 => 'pluginid',
+              1 => 'event',
+            ),
+          ),
+        ),
+        'class' => 'modPlugin',
+        'object' => '{"id":null,"source":1,"property_preprocess":0,"name":"goodStar","description":"\\u041f\\u043b\\u0430\\u0433\\u0438\\u043d \\u0434\\u043b\\u044f \\u043f\\u043e\\u0434\\u043a\\u043b\\u044e\\u0447\\u0435\\u043d\\u0438\\u044f \\u0441\\u0442\\u0438\\u043b\\u0435\\u0439","editor_type":0,"category":0,"cache_type":0,"plugincode":"\\/** @var modX $modx *\\/\\nswitch ($modx->event->name) {\\n\\n    case \'OnLoadWebDocument\':\\n        \\/**\\n         * @var goodStar $goodStar\\n         *\\/\\n\\n        $goodStar = $modx->getService(\'goodStar\', \'goodStar\', $modx->getOption(\'goodstar_core_path\' ,\'\', MODX_CORE_PATH . \'components\\/goodstar\\/\') . \'model\\/\', $scriptProperties);\\n        if (!$goodStar) {\\n            return \'Could not load goodStar class!\';\\n        }\\n\\n        $goodStar->initialize();\\n\\n        break;\\n\\n}","locked":0,"properties":null,"disabled":0,"moduleguid":"","static":0,"static_file":"core\\/components\\/goodstar\\/elements\\/plugins\\/goodstar.php","content":"\\/** @var modX $modx *\\/\\nswitch ($modx->event->name) {\\n\\n    case \'OnLoadWebDocument\':\\n        \\/**\\n         * @var goodStar $goodStar\\n         *\\/\\n\\n        $goodStar = $modx->getService(\'goodStar\', \'goodStar\', $modx->getOption(\'goodstar_core_path\' ,\'\', MODX_CORE_PATH . \'components\\/goodstar\\/\') . \'model\\/\', $scriptProperties);\\n        if (!$goodStar) {\\n            return \'Could not load goodStar class!\';\\n        }\\n\\n        $goodStar->initialize();\\n\\n        break;\\n\\n}","file":"goodstar","events":{"OnLoadWebDocument":[]}}',
+        'guid' => 'addfb034d7fcd0e6172160d186d4b551',
+        'native_key' => NULL,
+        'signature' => '22be5b4eebe6f12925b4e21da453335d',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Chunks' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Plugins' => 
+    array (
+      'unique_key' => 'name',
+      'preserve_keys' => false,
+      'update_object' => true,
+      'related_objects' => true,
+      'related_object_attributes' => 
+      array (
+        'PluginEvents' => 
+        array (
+          'preserve_keys' => true,
+          'update_object' => true,
+          'unique_key' => 
+          array (
+            0 => 'pluginid',
+            1 => 'event',
+          ),
+        ),
+      ),
+    ),
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+  ),
+  'namespace' => 'goodstar',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"goodstar-1.0.9-pl\\/modCategory\\/80ee9887601891174b7ca664686492ce\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"goodstar"}',
+    ),
+    1 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"goodstar-1.0.9-pl\\/modCategory\\/80ee9887601891174b7ca664686492ce\\/1\\/","target":"return MODX_ASSETS_PATH . \'components\\/\';","name":"goodstar"}',
+    ),
+    2 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"goodstar-1.0.9-pl\\/modCategory\\/80ee9887601891174b7ca664686492ce.events.resolver","type":"php","name":"events"}',
+    ),
+    3 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"goodstar-1.0.9-pl\\/modCategory\\/80ee9887601891174b7ca664686492ce.tables.resolver","type":"php","name":"tables"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '54e1b1263f9f7df961b73906d44c4454',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '80ee9887601891174b7ca664686492ce',
+  'native_key' => NULL,
+  'object' => '{"id":null,"parent":0,"category":"goodStar","rank":0}',
+);

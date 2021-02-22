@@ -1,0 +1,17 @@
+core/cache/*
+assets/cache_image/*
+assets/components/phpthumbon/cache/*
+api/logs/*
+assets/components/phpthumbof/cache/*
+
+# Dependencies
+node_modules/*
+package-lock.json
+
+# IDE - PHPStorm
+.idea
+
+assets/css/maps/
+assets/images/temp/
+
+.vscode

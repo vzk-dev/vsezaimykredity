@@ -1,0 +1,33 @@
+<?php
+/** @var xPDOTransport $transport */
+/** @var array $options */
+/** @var modX $modx */
+if ($transport->xpdo) {
+    $modx =& $transport->xpdo;
+    /** @var array $options */
+    switch ($options[xPDOTransport::PACKAGE_ACTION]) {
+        case xPDOTransport::ACTION_INSTALL:
+        case xPDOTransport::ACTION_UPGRADE:
+
+            $check = $modx->getObject('modEvent', array('name' => 'OnGoodStarVoice'));
+            if(!is_object($check)){
+                $event = $modx->newObject('modEvent');
+                $event->set('name', 'OnGoodStarVoice');
+                $event->set('service', 1);
+                $event->set('groupname', 'goodstar');
+                $event->save();
+
+                $modx->log(xPDO::LOG_LEVEL_INFO, '[goodStar] Successfully registered OnGoodStarVoice event!');
+            }else{
+                $modx->log(xPDO::LOG_LEVEL_INFO, '[goodStar] Event OnGoodStarVoice is already exist!');
+            }
+
+            break;
+
+        case xPDOTransport::ACTION_UNINSTALL:
+
+            break;
+    }
+}
+
+return true;

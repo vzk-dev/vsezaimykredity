@@ -1,0 +1,5 @@
+Changelog for seoTabs integration into MODx Revolution.
+
+seoTabs 1.0.0-pl
+====================================
+- First release

@@ -1,0 +1,21 @@
+Changelog for seoTabs integration into MODx Revolution.
+
+seoTabs 1.1.3-pl
+- Added: Shortcode support
+
+seoTabs 1.1.2-pl
+- Fixed: Render content
+
+seoTabs 1.1.1-pl
+====================================
+- Added: Parameter "ajax" for snippet seoTabs
+- Added: Backend page SEOTabs
+
+seoTabs 1.1.0-pl
+====================================
+- Improved: Redirect
+- Fixed: Render meta tags
+
+seoTabs 1.0.0-pl
+====================================
+- First release

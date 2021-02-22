@@ -1,0 +1,139 @@
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#mse2_form{
+    margin-bottom: 50px;
+}
+
+#mse2_form input{
+   margin-right: 15px;
+   height: 50px;
+   border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.livesearch{
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    background: #fff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}   
+.livesearch.active{
+    opacity: 1;
+    z-index: 99999;
+    pointer-events: all;
+}
+
+.livesearch__close{
+    margin-left: 30px;
+    position: relative;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.livesearch__close:after,
+.livesearch__close:before{
+    content: '';
+    display: block;
+    height: 2px;
+    width: 30px;
+    top: 13px;
+    background: #4e99d2;
+    position: absolute;
+}
+.livesearch__close:after{
+    transform: rotate(-45deg);
+}
+.livesearch__close:before{
+    transform: rotate(45deg);
+}
+.livesearch #mse2_form{
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.search-header {
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: #4e99d2;
+    margin-top: 5px;
+    position: relative;
+}
+.search-header:before {
+    position: absolute;
+    content: '';
+    background: url("../img/loupe.svg") no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+.showmore-button {
+    cursor: pointer; 
+    text-align: center; 
+    padding: 7px 5px 10px 5px; 
+    margin-top: 5px;
+}
+
+.showmore-button .fas{
+    margin-left: 5px;
+}
+
+.showmore-button {
+    display: block;
+    cursor: pointer; 
+    text-align: left; 
+    padding: 0px 5px 10px 0px; 
+    margin-top: 0;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+}
+
+.showmore-button .fas{
+    margin-left: 0px;
+}
+
+#showmore-button-category-content.showmore-button {
+    display: flex;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+    font-weight: 500;
+    color: #58cbf5;
+}
+
+.card-offer-bg_others > .card-offer-bg_dop:first-of-type {
+    display: none;
+}
+.card-offer-bg_dop {
+    border-radius: 0;
+    border: none;
+}
+.card-offer-bg_others {
+    margin: 0 -20px -20px;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .sitemap {
+        line-height: 1.5;
+    }
+    
+    .sitemap li {
+        padding: 5px 0;
+    }
+}

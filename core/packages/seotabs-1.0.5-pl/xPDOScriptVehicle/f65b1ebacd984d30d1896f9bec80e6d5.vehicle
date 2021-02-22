@@ -1,0 +1,16 @@
+<?php return array (
+  'class' => 'xPDOScriptVehicle',
+  'object' => 
+  array (
+    'source' => 'seotabs-1.0.5-pl/xPDOScriptVehicle/f65b1ebacd984d30d1896f9bec80e6d5.resolve.encryption.script',
+  ),
+  'vehicle_class' => 'xPDOScriptVehicle',
+  'namespace' => 'seotabs',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'guid' => 'fc3c6bc9ec5e393141366a64c131add0',
+  'package' => '',
+  'signature' => 'f65b1ebacd984d30d1896f9bec80e6d5',
+  'native_key' => 'fc3c6bc9ec5e393141366a64c131add0',
+);

@@ -1,0 +1,16 @@
+<?php return array (
+  'class' => 'xPDOScriptVehicle',
+  'object' => 
+  array (
+    'source' => 'seofilter-1.6.4-beta/xPDOScriptVehicle/b90b50a18c330a665939f3e0bd27fc16.resolve.encryption.script',
+  ),
+  'vehicle_class' => 'xPDOScriptVehicle',
+  'namespace' => 'seofilter',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'guid' => 'da4fb2e50453dc6b527667f61c4fb053',
+  'package' => '',
+  'signature' => 'b90b50a18c330a665939f3e0bd27fc16',
+  'native_key' => 'da4fb2e50453dc6b527667f61c4fb053',
+);

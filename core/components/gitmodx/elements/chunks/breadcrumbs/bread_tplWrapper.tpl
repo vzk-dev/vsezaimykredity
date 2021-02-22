@@ -1,0 +1,1 @@
+<div class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">[[+output]]</div>

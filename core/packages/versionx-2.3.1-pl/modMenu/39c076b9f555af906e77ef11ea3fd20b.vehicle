@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'unique_key' => 'text',
+  'related_objects' => false,
+  'namespace' => 'versionx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'e6163088a76f6c00c8ef2e090d4e96f2',
+  'package' => 'modx',
+  'class' => 'modMenu',
+  'signature' => '39c076b9f555af906e77ef11ea3fd20b',
+  'native_key' => 'versionx',
+  'object' => '{"text":"versionx","parent":"components","action":"index","description":"versionx.menu_desc","icon":"","menuindex":0,"params":"","handler":"","permissions":"","namespace":"versionx"}',
+);

@@ -1,0 +1,88 @@
+.desktop-scroller {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 35px;
+    height: 90px;
+    line-height: 35px;
+    text-align: center;
+    vertical-align: middle;
+    background-color:
+    transparent;
+    z-index: 99;
+    text-align: center;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.desktop-scroller .ds-up,
+.desktop-scroller .ds-down {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #E7EBEF;
+    background-image: url("../../images/q-arr.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+.desktop-scroller .ds-down {
+    transform: rotate(180deg);
+}
+
+.desktop-scroller .ds-up:hover,
+.desktop-scroller .ds-down:hover {
+    background-color:#009AD5;
+}
+
+.no-touchevents .desktop-scroller {
+    opacity: 0.5;
+}
+
+.no-touchevents .desktop-scroller:hover {
+    opacity: 1;
+}
+
+
+.desktop-scroller svg{
+    pointer-events: none;
+}
+
+.scroll-progress {
+    text-align: center;
+    font-family: var(--system-font);
+    font-size: 10px;
+    font-weight: 600;
+    color: #818181;
+    pointer-events: none;
+}
+
+.scroll-progress span {
+    padding-right: 1px;
+    font-size: inherit;
+    line-height: 20px;
+}
+
+.desktop-scroller .scroll-progress {
+    display: flex;
+    height: 20px;
+    line-height: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .desktop-scroller {
+        right: 5px;
+        bottom: 5px;
+    }
+
+
+}

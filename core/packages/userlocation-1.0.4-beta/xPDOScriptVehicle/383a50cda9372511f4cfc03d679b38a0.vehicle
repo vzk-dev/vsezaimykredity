@@ -1,0 +1,15 @@
+<?php return array (
+  'class' => 'xPDOScriptVehicle',
+  'object' => 
+  array (
+    'source' => 'userlocation-1.0.4-beta/xPDOScriptVehicle/383a50cda9372511f4cfc03d679b38a0.encryption.script',
+  ),
+  'vehicle_class' => 'xPDOScriptVehicle',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'guid' => '7f082e5b36ac65b2cf4f0df544ad07ba',
+  'package' => '',
+  'signature' => '383a50cda9372511f4cfc03d679b38a0',
+  'native_key' => '7f082e5b36ac65b2cf4f0df544ad07ba',
+);

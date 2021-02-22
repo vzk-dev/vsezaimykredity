@@ -1,0 +1,17 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => true,
+  'related_objects' => false,
+  'namespace' => 'goodstar',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '9d90fd9430809f01c6a91fa2ae65b99d',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '894a43d16ae3007196f273c619b578aa',
+  'native_key' => 'goodstar_jsCustom',
+  'object' => '{"key":"goodstar_jsCustom","value":"assets\\/components\\/goodstar\\/js\\/goodstar.js","xtype":"textfield","namespace":"goodstar","area":"goodstar_main","editedon":null}',
+);

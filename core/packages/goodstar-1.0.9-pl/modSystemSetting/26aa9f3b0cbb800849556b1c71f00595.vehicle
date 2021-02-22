@@ -1,0 +1,17 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => true,
+  'related_objects' => false,
+  'namespace' => 'goodstar',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'd0981708d0b98b912c11b323214b52e3',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '26aa9f3b0cbb800849556b1c71f00595',
+  'native_key' => 'goodstar_jsUrl',
+  'object' => '{"key":"goodstar_jsUrl","value":"assets\\/components\\/goodstar\\/js\\/jquery-bar-rating\\/dist\\/jquery.barrating.min.js","xtype":"textfield","namespace":"goodstar","area":"goodstar_main","editedon":null}',
+);

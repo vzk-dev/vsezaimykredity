@@ -1,0 +1,17 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => true,
+  'related_objects' => false,
+  'namespace' => 'goodstar',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'ff06e992634e27284f5dc2e9223abc3f',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '70086a5a35d1ad9ae6b6eb16f932c83c',
+  'native_key' => 'goodstar_theme',
+  'object' => '{"key":"goodstar_theme","value":"css-stars","xtype":"textfield","namespace":"goodstar","area":"goodstar_main","editedon":null}',
+);

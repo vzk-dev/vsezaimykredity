@@ -1,0 +1,39 @@
+<?php
+/** @var xPDOTransport $transport */
+/** @var array $options */
+/** @var modX $modx */
+if ($transport->xpdo) {
+    $modx =& $transport->xpdo;
+
+    /** @var array $options */
+    switch ($options[xPDOTransport::PACKAGE_ACTION]) {
+        case xPDOTransport::ACTION_INSTALL:
+        case xPDOTransport::ACTION_UPGRADE:
+            /** @var UserLocation $UserLocation */
+            if ($UserLocation = $modx->getService('userlocation.UserLocation', '', MODX_CORE_PATH.'components/userlocation/model/')) {
+                $locations = MODX_CORE_PATH.'components/userlocation/elements/locations/locations.csv';
+                if (file_exists($locations) AND !$modx->getCount('ulLocation')) {
+                    /** @var ulLocationImport $handler */
+                    if ($handler = $modx->getService('userlocation.ulLocationImport', '', MODX_CORE_PATH.'components/userlocation/'.'model/', [
+                        'csv_terminated'   => ',',
+                        'csv_enclosed'     => '"',
+                        'csv_escaped'      => "'",
+                        'csv_ignore_lines' => "",
+                        'load_method'      => "",
+                        'load_truncate'    => '',
+                        'file'             => $locations,
+                    ])
+                    ) {
+                        $handler->run();
+                    }
+                }
+            }
+            break;
+
+        case xPDOTransport::ACTION_UNINSTALL:
+            break;
+    }
+
+}
+
+return true;

@@ -1,0 +1,17 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'related_objects' => false,
+  'namespace' => 'userlocation',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '61bc2867e2edd9ed68c965615f21c8c6',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '02db2208344dd474138c51ef45607b4d',
+  'native_key' => 'userlocation_default_location',
+  'object' => '{"key":"userlocation_default_location","value":"7700000000000","xtype":"textfield","namespace":"userlocation","area":"userlocation_main","editedon":null}',
+);

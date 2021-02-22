@@ -1,0 +1,17 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => true,
+  'related_objects' => false,
+  'namespace' => 'goodstar',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '52071be6174e69ab517717e028c64fa1',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'bdca0628c4f3db17887ca29c5efe3d16',
+  'native_key' => 'goodstar_hide_scheme',
+  'object' => '{"key":"goodstar_hide_scheme","value":true,"xtype":"combo-boolean","namespace":"goodstar","area":"goodstar_main","editedon":null}',
+);

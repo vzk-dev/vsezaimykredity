@@ -1,0 +1,16 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => false,
+  'unique_key' => 'name',
+  'namespace' => 'userlocation',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '4843a1689db7f1f87189b1ca38f1b526',
+  'package' => 'modx',
+  'class' => 'modDashboardWidget',
+  'signature' => '9090c79613aac88975adcfaf7da1f714',
+  'native_key' => NULL,
+  'object' => '{"id":null,"name":"UserLocation","description":"","type":"file","content":"[[++core_path]]components\\/userlocation\\/model\\/userlocation\\/ulwidget.class.php","namespace":"userlocation","lexicon":"userlocation:dashboards","size":"half","name_trans":"UserLocation","description_trans":""}',
+);

@@ -1,0 +1,11 @@
+<?php
+
+/** @var xPDOTransport $transport */
+/** @var array $options */
+/** @var modX $modx */
+if (!$modx =& $transport->xpdo) {
+    return true;
+}
+
+$modx->loadClass('transport.xPDOObjectVehicle', XPDO_CORE_PATH, true, true);
+$modx->loadClass('modStoreVehicle', MODX_CORE_PATH.'components/userlocation/model/', true, true);

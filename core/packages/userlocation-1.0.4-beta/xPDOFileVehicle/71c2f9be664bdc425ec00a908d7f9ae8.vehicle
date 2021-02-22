@@ -1,0 +1,16 @@
+<?php return array (
+  'class' => 'xPDOFileVehicle',
+  'object' => 
+  array (
+    'source' => 'userlocation-1.0.4-beta/xPDOFileVehicle/71c2f9be664bdc425ec00a908d7f9ae8/',
+    'target' => 'return MODX_CORE_PATH . \'components/userlocation/model/\';',
+    'name' => 'modstorevehicle.class.php',
+  ),
+  'vehicle_class' => 'xPDOFileVehicle',
+  'uninstall_files' => false,
+  'vehicle_package' => 'transport',
+  'guid' => '01f2df84007a83df99a08bd88914ba55',
+  'package' => '',
+  'signature' => '71c2f9be664bdc425ec00a908d7f9ae8',
+  'native_key' => '01f2df84007a83df99a08bd88914ba55',
+);

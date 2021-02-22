@@ -1,0 +1,16 @@
+<?php return array (
+  'vehicle_class' => 'encryptedVehicle',
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'seotabs',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'guid' => 'd13c49b402f2e874ec73c1f684b24665',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '9ec2a753b98e16009fb373c984755752',
+  'native_key' => 'seotabs_replaceseparator',
+  'object_encrypted' => 'ndHeGEHVkO2k+BEVMVU82IOdtg5KYw7XEhX6FLa9TVTQEvIEaEwi+pdPICTcy5JMowthUI3WfnjaV4gvf4qGbiUayGLvE7hZM9a3i3+wWhQdGbXcRZ8hMBNQcZiRC0+0xrbr1hrLg59pGegGlboyvuRpwT6siKJn4MYa+0mEpKxT7g2aoTG8oet2dSK8S33rWwRomEshH5T4akS3yeZb2A==',
+);

@@ -1,0 +1,15 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'namespace' => 'seofilter',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '3b3f53040239cceb06ed78ffaf81d47e',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => '0aa85d6a6e7313f9b5b1e5cab7ee8cb5',
+  'native_key' => 'sfOnReturnMeta',
+  'object' => '{"name":"sfOnReturnMeta","service":6,"groupname":"SeoFilter"}',
+);

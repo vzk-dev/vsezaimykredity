@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'seofilter',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '559dda25a7793b4e59046fd941e94022',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '6d589bbfc9295715afd23830b30f966c',
+  'native_key' => 'seofilter_crumbs_tpl_current',
+  'object' => '{"key":"seofilter_crumbs_tpl_current","value":"tpl.SeoFilter.crumbs.current","xtype":"textfield","namespace":"seofilter","area":"seofilter_seo","editedon":null}',
+);

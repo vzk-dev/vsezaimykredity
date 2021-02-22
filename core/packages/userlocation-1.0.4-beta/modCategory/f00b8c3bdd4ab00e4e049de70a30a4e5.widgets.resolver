@@ -1,0 +1,53 @@
+<?php
+/** @var xPDOTransport $transport */
+/** @var array $options */
+/** @var modX $modx */
+if ($transport->xpdo) {
+    $modx =& $transport->xpdo;
+
+    /** @var modDashboard $dashboard */
+    if (!$dashboard = $modx->getObject('modDashboard', ['name' => 'Default'])) {
+        return true;
+    }
+    /** @var modDashboardWidget $widget */
+    if (!$widget = $modx->getObject('modDashboardWidget', ['name' => 'UserLocation'])) {
+        return true;
+    }
+
+    /** @var modDashboardWidgetPlacement $placement */
+    $placement = $modx->getObject('modDashboardWidgetPlacement', [
+        'dashboard' => $dashboard->get('id'),
+        'widget'    => $widget->get('id'),
+    ]);
+
+    /** @var array $options */
+    switch ($options[xPDOTransport::PACKAGE_ACTION]) {
+        case xPDOTransport::ACTION_INSTALL:
+        case xPDOTransport::ACTION_UPGRADE:
+
+            if (!$placement) {
+                $placement = $modx->newObject('modDashboardWidgetPlacement');
+                $placement->set('widget', $widget->get('id'));
+                $placement->set('dashboard', $dashboard->get('id'));
+                $placement->set('rank', 0);
+                $placement->save();
+            }
+
+            $modx->removeCollection('modSystemSetting', [
+                'key:IN' => [
+                    'userlocation_dashboard_class',
+                ],
+            ]);
+
+            break;
+
+        case xPDOTransport::ACTION_UNINSTALL:
+            if ($placement) {
+                $placement->remove();
+            }
+            break;
+    }
+
+}
+
+return true;

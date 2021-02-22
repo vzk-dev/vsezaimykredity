@@ -1,0 +1,15 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'namespace' => 'seofilter',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '650be241bd29c372840dab220512590f',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => '2e02dc1eeb7ebf6f6c5b551c4ef53c5d',
+  'native_key' => 'sfOnBeforeUrlAdd',
+  'object' => '{"name":"sfOnBeforeUrlAdd","service":6,"groupname":"SeoFilter"}',
+);

@@ -116,16 +116,23 @@
     color: #58cbf5;
 }
 
-.card-offer-bg_others > .card-offer-bg_dop:first-of-type {
+.card-offer-bg {
     display: none;
 }
+.card-offer-bg__main
+{
+    display: block;
+}
+
 .card-offer-bg_dop {
     border-radius: 0;
     border: none;
+    display: block;
 }
 .card-offer-bg_others {
-    margin: 0 -20px -20px;
+    display: none;
     border: none;
+    margin: 0 -20px -20px;
 }
 
 @media (max-width: 768px) {
@@ -135,5 +142,35 @@
     
     .sitemap li {
         padding: 5px 0;
+    }
+}
+.header .cource__price {
+    min-width: 55px;
+}
+.loading__after {
+    margin-bottom: 200px !important;
+    position: relative;
+}
+
+.loading__after:after {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    content: 'loading...';
+    transform: translate(-50%, -50%);
+    font-size: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #5dcbf5 transparent #5dcbf5 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

@@ -10,9 +10,10 @@ $(document).ready(function() {
             var $el = $(this);
             var nextButton = $el.parent().find('.swiper-button-next');
             var prevButton = $el.parent().find('.swiper-button-prev');
+            var sliderCount = $el.find('.swiper-slide').length;
 
             new Swiper($(this), {
-                slidesPerView: 4,
+                slidesPerView: sliderCount,
                 spaceBetween: 45,
                 loop: true,
                 // pagination: {
@@ -21,24 +22,24 @@ $(document).ready(function() {
                 // },
                 navigation: {
                     nextEl: nextButton,
-                    prevEl: prevButton,
+                    prevEl: prevButton
                 },
                 breakpoints: {
                     1199: {
-                        slidesPerView: 0,
-                        spaceBetween: 40,
+                        slidesPerView: Math.round(sliderCount / 2),
+                        spaceBetween: 40
                     },
                     991: {
-                        slidesPerView: 2,
-                        spaceBetween: 40,
+                        slidesPerView: Math.round(sliderCount / 2),
+                        spaceBetween: 40
                     },
                     /*780: {
-                        slidesPerView: 2,
+                        slidesPerView: Math.round(sliderCount / 2),
                         spaceBetween: 45,
                     },*/
                     667: {
                         slidesPerView: 1,
-                        spaceBetween: 20,
+                        spaceBetween: 20
                     }
                 }
             });

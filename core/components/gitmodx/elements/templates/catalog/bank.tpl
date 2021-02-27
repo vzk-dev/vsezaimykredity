@@ -25,50 +25,82 @@
         <div class="col-lg-9">
             <div class="swiper-container bank">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        {'!pdoResources' | snippet : [
-                            'parents' => $_modx->resource.id,
-                            'resources' => $id,
-                            'depth' => 2,
-                            'limit' => 1,
-                            'where' => '{"alias":"debit-cards"}'
-                            'tpl' => '@INLINE <div class="direction"><a class="direction-value direction-value--bg1" href="{$id | url}">[[+menutitle:default=`[[+pagetitle]]`]]</a></div>',
-                            'tplWrapper' => '@INLINE [[+output]]'
-                        ]}
-                    </div>
-                    <div class="swiper-slide">
-                        {'!pdoResources' | snippet : [
-                            'parents' => $_modx->resource.id,
-                            'resources' => $id,
-                            'depth' => 2,
-                            'limit' => 1,
-                            'where' => '{"alias":"credit-cards"}'
-                            'tpl' => '@INLINE <div class="direction"><a class="direction-value direction-value--bg2" href="{$id | url}">[[+menutitle:default=`[[+pagetitle]]`]]</a></div>',
-                            'tplWrapper' => '@INLINE [[+output]]'
-                        ]}
-                    </div>
-                    <div class="swiper-slide">
-                        {'!pdoResources' | snippet : [
-                            'parents' => $_modx->resource.id,
-                            'resources' => $id,
-                            'depth' => 2,
-                            'limit' => 1,
-                            'where' => '{"alias":"credits"}'
-                            'tpl' => '@INLINE <div class="direction"><a class="direction-value direction-value--bg3" href="{$id | url}">[[+menutitle:default=`[[+pagetitle]]`]]</a></div>',
-                            'tplWrapper' => '@INLINE [[+output]]'
-                        ]}
-                    </div>
-                    <div class="swiper-slide">
-                        {'!pdoResources' | snippet : [
-                            'parents' => $_modx->resource.id,
-                            'resources' => $id,
-                            'depth' => 2,
-                            'limit' => 1,
-                            'where' => '{"alias":"ipoteka"}'
-                            'tpl' => '@INLINE <div class="direction"><a class="direction-value direction-value--bg4" href="{$id | url}">[[+menutitle:default=`[[+pagetitle]]`]]</a></div>',
-                            'tplWrapper' => '@INLINE [[+output]]'
-                        ]}
-                    </div>
+                        {var $count__debit = $_modx->runSnippet('!count',[
+                        'parents' => $_modx->resource.id,
+                        'depth' => 2,
+                        'where' => '{"alias":"debit-cards"}',
+                        'hide' => false
+                        ])}
+                        {if $count__debit}
+                        <div class="swiper-slide">
+                                {'!pdoResources' | snippet : [
+                                    'parents' => $_modx->resource.id,
+                                    'resources' => $id,
+                                    'depth' => 2,
+                                    'limit' => 1,
+                                    'where' => '{"alias":"debit-cards"}',
+                                    'tpl' => '@INLINE <div class="direction"><a class="direction-value direction-value--bg1" href="{$id | url}">[[+menutitle:default=`[[+pagetitle]]`]]</a></div>',
+                                    'tplWrapper' => '@INLINE [[+output]]'
+                                ]}
+                        </div>
+                        {/if}
+                        {var $count__credit = $_modx->runSnippet('!count',[
+                        'parents' => $_modx->resource.id,
+                        'depth' => 2,
+                        'where' => '{"alias":"credit-cards"}',
+                        'hide' => false
+                        ])}
+                        {if $count__credit}
+                        <div class="swiper-slide">
+                                {'!pdoResources' | snippet : [
+                                    'parents' => $_modx->resource.id,
+                                    'resources' => $id,
+                                    'depth' => 2,
+                                    'limit' => 1,
+                                    'where' => '{"alias":"credit-cards"}',
+                                    'tpl' => '@INLINE <div class="direction"><a class="direction-value direction-value--bg2" href="{$id | url}">[[+menutitle:default=`[[+pagetitle]]`]]</a></div>',
+                                    'tplWrapper' => '@INLINE [[+output]]'
+                                ]}
+                        </div>
+                        {/if}
+                        {var $count__credits = $_modx->runSnippet('!count',[
+                        'parents' => $_modx->resource.id,
+                        'depth' => 2,
+                        'where' => '{"alias":"credits"}',
+                        'hide' => false
+                        ])}
+                        {if $count__credits}
+                        <div class="swiper-slide">
+                                {'!pdoResources' | snippet : [
+                                    'parents' => $_modx->resource.id,
+                                    'resources' => $id,
+                                    'depth' => 2,
+                                    'limit' => 1,
+                                    'where' => '{"alias":"credits"}',
+                                    'tpl' => '@INLINE <div class="direction"><a class="direction-value direction-value--bg3" href="{$id | url}">[[+menutitle:default=`[[+pagetitle]]`]]</a></div>',
+                                    'tplWrapper' => '@INLINE [[+output]]'
+                                ]}
+                        </div>
+                        {/if}
+                        {var $count__ipoteka = $_modx->runSnippet('!count',[
+                        'parents' => $_modx->resource.id,
+                        'depth' => 2,
+                        'where' => '{"alias":"ipoteka"}',
+                        'hide' => false
+                        ])}
+                        {if $count__ipoteka}
+                        <div class="swiper-slide">
+                                {'!pdoResources' | snippet : [
+                                    'parents' => $_modx->resource.id,
+                                    'resources' => $id,
+                                    'depth' => 2,
+                                    'limit' => 1,
+                                    'where' => '{"alias":"ipoteka"}',
+                                    'tpl' => '@INLINE <div class="direction"><a class="direction-value direction-value--bg4" href="{$id | url}">[[+menutitle:default=`[[+pagetitle]]`]]</a></div>',
+                                    'tplWrapper' => '@INLINE [[+output]]'
+                                ]}
+                        </div>
+                        {/if}
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>

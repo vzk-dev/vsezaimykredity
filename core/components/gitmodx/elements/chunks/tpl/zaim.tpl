@@ -11,29 +11,31 @@
             {/if}
             <div class="mt-2 mb-2">
                 <div class="card-offer-item">
-                    <div class="card-offer-stars">
-                        {$_modx->runSnippet('!ecThreadRating',[
-                        'thread'=>'resource-'~$id
-                        ])}
-                        {var $rCount = $_modx->runSnippet('!ecMessagesCount',[
-                        'thread'=> 'resource-'~$id
-                        ])}
-                        <span class="card-offer-stars__reviews"><a href="{$id | url}#reviews" class="card-offer-stars__reviews-color">{$rCount} {$_modx->runSnippet('!plural',['n'=>$rCount])}</a></span>
-                    </div>
+                    {var $rCount = $_modx->runSnippet('!ecMessagesCount',[
+                    'thread'=> 'resource-'~$id
+                    ])}
+                    {if $rCount}
+                        <div class="card-offer-stars">
+                            {$_modx->runSnippet('!ecThreadRating',[
+                            'thread'=>'resource-'~$id
+                            ])}
+                            <span class="card-offer-stars__reviews"><a href="{$id | url}#reviews" class="card-offer-stars__reviews-color">{$rCount} {$_modx->runSnippet('!plural',['n'=>$rCount])}</a></span>
+                        </div>
+                    {/if}
                     {var $otherCount = $_modx->runSnippet('!count',[
                         'parents' => $parent,
                         'depth' =>0,
                         ])-1}
                     {if $otherCount}
-                    <div class="open-card open-card_get-other-cards arrow" data-mod-parent-id="{$parent}">
+                    <div class="open-card open-card_show-other-cards arrow" data-mod-parent-id="{$parent}">
                         <div class="arrow-text arrow-block">Ещё {$otherCount} {$_modx->runSnippet('!bid',[
                         'n'=> $otherCount,
                         'word1' => 'тариф',
                         'word2' => 'тарифа',
                         'word5' => 'тарифов',
                         ])}
-                        <span class="arrow-left"></span><span class="arrow-right"></span>
                         </div>
+                        <span class="arrow-left"></span><span class="arrow-right"></span>
                         
                     </div>
                     {/if}
@@ -116,7 +118,21 @@
                 {/if}
                 <div class="col-md-4 col-lg-3 open open-expand">
                     Развернуть<span class="open-image"></span>
-                </div>    
+                </div>
+            </div>
+            <div class="row">
+                {set $rows = $_pls["tv.label"]}
+                <div class="col-md-12 col-lg-12 mt-3 mt-lg-0">
+                    {if $_pls["tv.label"]}
+                        {foreach $rows as $row}
+                            {if $row['label_link']}
+                            <a class="credits-offer-bun" href="{$row['label_link'] | url}">{$row.labeltext}</a>
+                            {else}
+                                <div class="credits-offer-bun">{$row.labeltext}</div>
+                            {/if}
+                        {/foreach}
+                    {/if}
+                </div>
             </div>
         </div>
     </div>

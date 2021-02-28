@@ -116,7 +116,7 @@
     color: #58cbf5;
 }
 
-.card-offer-bg {
+.loading__after .card-offer-bg {
     display: none;
 }
 .card-offer-bg__main
@@ -173,4 +173,9 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.sort .sort-title,
+.sort .sort-value {
+    padding-bottom: 5px;
 }

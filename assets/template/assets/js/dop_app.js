@@ -9,7 +9,7 @@ $(document).ready(function () {
         $('.livesearch').toggleClass('active');
     });
     
-    $(".arrow").click(function (e) {
+    $(document).on('click', ".arrow", function (e) {
         e.preventDefault();
         $(this).toggleClass("open-arrow");
     });
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
         var values = mSearch2.Hash.get();
 
-        var currentValue;
+        var currentValue, placeholderText;
         // console.log('value',values,name);
 
         if (values[name]) {
@@ -50,11 +50,9 @@ $(document).ready(function () {
         }
 
 
-        if (!currentValue) {
-            currentValue = min_value;
-        }
+        placeholderText = currentValue?currentValue:'Не важно';
+        currentValue = currentValue?currentValue:min_value;
 
-        // console.log(currentValue,min_value,max_value);
 
         $slider.slider({
             min: min_value,
@@ -68,7 +66,8 @@ $(document).ready(function () {
             },
             create: function (event, ui) {
                 // sliderInput.val(currentValue);
-                $slider.closest('.filter-slider').find('.filter-slider__value').text(currentValue);
+                // console.log(currentValue,placeholderText,min_value,max_value);
+                $slider.closest('.filter-slider').find('.filter-slider__value').text(placeholderText);
                 $slider.append('<div class="filter-slider__min_range">' + min_value + '</div>');
                 $slider.append('<div class="filter-slider__max_range">' + max_value + '</div>');
             },
@@ -133,8 +132,7 @@ $(document).ready(function () {
     });
     
     $(document).on('mse2_load', function (e, data) {
-        console.log(e, data);
-        
+        sortCards();
     });
     
     $('.f_links.footer__row').showMore({
@@ -149,14 +147,11 @@ $(document).ready(function () {
     
 });
 
-
-
-
 //Развернуть/Свернуть
 $(document).on("click", ".close, .open-expand", function (e) {
     e.preventDefault(); 
-    $(this).closest(".card-offer-bg").find(".card-offer-details").slideToggle(); 
-    $(this).closest(".credits-offer-bg").find(".card-offer-details").slideToggle(); 
+    $(this).closest(".card-offer-bg").children(".card-offer-details").slideToggle();
+    $(this).closest(".credits-offer-bg").children(".card-offer-details").slideToggle();
 }); 
 
 
@@ -233,16 +228,16 @@ $(function(){
 });
 
 /*Табуляция*/
-let tabsBtn   = document.querySelectorAll(".tabs__nav-btn");
-let tabsItems = document.querySelectorAll(".tabs__item");
+var tabsBtn   = document.querySelectorAll(".tabs__nav-btn");
+var tabsItems = document.querySelectorAll(".tabs__item");
 
 tabsBtn.forEach(onTabClick);
 
 function onTabClick(item) {
     item.addEventListener("click", function() {
-        let currentBtn = item;
-        let tabId = currentBtn.getAttribute("data-tab");
-        let currentTab = document.querySelector(tabId);
+        var currentBtn = item;
+        var tabId = currentBtn.getAttribute("data-tab");
+        var currentTab = document.querySelector(tabId);
 
         if( ! currentBtn.classList.contains('active') ) {
             tabsBtn.forEach(function(item) {
@@ -275,51 +270,92 @@ function findGetParameter(parameterName) {
     return result;
 }
 
+function declension(value, words){
+    value = Math.abs(value) % 100;
+    var num = value % 10;
+    if(value > 10 && value < 20) return words[2];
+    if(num > 1 && num < 5) return words[1];
+    if(num === 1) return words[0];
+    return words[2];
+}
+
 $(function(){
-    
-    $(document).on("click", ".open-card_get-other-cards", function (e) {
-        e.preventDefault(); 
-        var parentId = $(this).data('mod-parent-id');
-        var $current_button = $(this);
-        var req_params = {
-            action: "filter",
-            limit: 100,
-            parents: parentId,
-            pageId: parentId,
-            key: mse2Config.key,
-            groupby: "modResource.id",
-            tpl: 1,
-            clear_cache: 1,
-            depth: 0
-          };
-         
-        if (findGetParameter('time')) req_params.time = req_params.time_range = findGetParameter('time');
-        if (findGetParameter('age')) req_params.age_range = findGetParameter('age');
-        if (findGetParameter('summ')) req_params.summ_range = findGetParameter('summ');
-            
-        $.post(
-          mse2Config.actionUrl,
-          req_params,
-            function loadDopCards(data)
-            {
-                data = JSON.parse(data);
-                console.log(data);
-                $('.card-offer-bg[data-mod-parent-id="'+parentId+'"]').append('<div class="card-offer-bg_others">'+data.data.results+'</div>');
-                
-                $('.calc_summ').change();
-                $current_button.removeClass('open-card_get-other-cards').addClass('open-card_hide-other-cards');
-            }
-        );
-    }); 
-    
+
     $(document).on("click", ".open-card_hide-other-cards", function (e) {
         $(this).closest('.card-offer-bg').find('.card-offer-bg_others').hide();
         $(this).removeClass('open-card_hide-other-cards').addClass('open-card_show-other-cards');
     });
-    
+
     $(document).on("click", ".open-card_show-other-cards", function (e) {
         $(this).closest('.card-offer-bg').find('.card-offer-bg_others').show();
         $(this).removeClass('open-card_show-other-cards').addClass('open-card_hide-other-cards');
     });
+
+    sortCards();
+    getCurrencyExchangeRate();
 });
-         
+
+function sortCards() {
+    var mfilter_parentId = ($('.section__page').length>0)?$('.section__page')[0].dataset.modId:false;
+    if (!( mfilter_parentId == 15 || mfilter_parentId == 794 )) return;
+    var allOfferCards = Array.from(document.getElementsByClassName('card-offer-bg'));
+    var sortedOfferCards = [];
+    var sortedOfferCardsOrder = [];
+    for (var indexOfferCards = 0; indexOfferCards < allOfferCards.length; indexOfferCards++) {
+        var parentId = allOfferCards[indexOfferCards].dataset.modParentId;
+        if (!sortedOfferCards[parentId]) {
+            sortedOfferCards[parentId] = [];
+            sortedOfferCardsOrder.push(parentId);
+        }
+        sortedOfferCards[parentId].push(allOfferCards[indexOfferCards]);
+    }
+
+    var allResultsContainer = document.getElementById('mse2_results');
+    var lastMain = lastOthers = null;
+
+    for (var indexOfferCards = 0; indexOfferCards < sortedOfferCardsOrder.length; indexOfferCards++) {
+        for (var indexDaughtersOfferCards = 0; indexDaughtersOfferCards < sortedOfferCards[sortedOfferCardsOrder[indexOfferCards]].length; indexDaughtersOfferCards++) {
+            var currentCard = sortedOfferCards[sortedOfferCardsOrder[indexOfferCards]][indexDaughtersOfferCards];
+            if (0 === indexDaughtersOfferCards) {
+                lastMain = currentCard;
+                lastMain.classList.add('card-offer-bg__main');
+                allResultsContainer.appendChild(lastMain);
+            } else {
+                if (1 === indexDaughtersOfferCards) {
+                    lastOthers =  document.createElement("div");
+                    lastOthers.classList.add('card-offer-bg_others');
+                    lastMain.appendChild(lastOthers);
+                }
+                currentCard.classList.remove('mt-4');
+                currentCard.classList.add('card-offer-bg_dop');
+                currentCard.getElementsByClassName('open-card_show-other-cards')[0].remove();
+                lastOthers.appendChild(currentCard);
+            }
+        }
+        var otherOffersText = lastMain.getElementsByClassName('arrow-text')[0];
+        if (otherOffersText) {
+            indexDaughtersOfferCards--;
+            if (indexDaughtersOfferCards)
+                otherOffersText.innerText = "Ещё " + indexDaughtersOfferCards + declension(indexDaughtersOfferCards, [' тариф', ' тарифа', ' тарифов']);
+            else
+                otherOffersText.parentElement.style.display = 'none';
+        }
+
+    }
+    allResultsContainer.classList.remove('loading__after');
+
+}
+
+function getCurrencyExchangeRate() {
+    $.post(
+        '/ajax.json',
+        {},
+        function updateRates(rates)
+        {
+            var ratesDivs = document.getElementsByClassName('cource__price');
+            ratesDivs[0].innerHTML = rates['usd'];
+            ratesDivs[1].innerHTML = rates['eur'];
+        }
+    );
+
+}

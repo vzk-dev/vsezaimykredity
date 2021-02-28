@@ -6,6 +6,23 @@ $('#ipoteka_calc_summ_realty_fee, #ipoteka_calc_summ_realty, #ipoteka_calc_time,
     delimiter: ' ',
     numeralPositiveOnly: true
 });
+
+var $el_need_cleave = $('.credit_calc_summ , .credit_calc_days , .credit_calc_rate, .calc_summ , .calc_days , .calc_rate');
+
+$el_need_cleave.each(function(indx, element){
+    new Cleave(element, {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand',
+        numeralDecimalMark: '.',
+        numeralPositiveOnly: true,
+        delimiter: ' '
+    });
+});
+
+$(document).on('mse2_load', function (e, data) {
+    $('.calc_summ').change();
+});
+
 calc();
 
 $('#ipoteka_calc_summ_realty_fee, #ipoteka_calc_summ_realty, #ipoteka_calc_time, #credit_calc_summ, #credit_calc_days, #calc_days, #calc_summ, #calc_rate').change(function (e) {
@@ -13,52 +30,77 @@ $('#ipoteka_calc_summ_realty_fee, #ipoteka_calc_summ_realty, #ipoteka_calc_time,
 });
     
 //Калькуляторы на страницах продуктов
+function getValue(selector, options) {
+    options = options?options:{text:false, float:false};
+    var $el = $(selector);
+    if ($el.length === 0) return false;
+    var realValue = (options.text)?$el.text():$el.val(),
+        trimValue = realValue.replace(/\s/g, '');
+    return (options.float)?parseFloat(trimValue):parseInt(trimValue);
+}
+var options__text = {text:true, float: true};
+var options__float = {text:false, float: true};
+
+function setValue(selector, value, options) {
+    options = options?options:{text:false, postfix:false};
+    var $el = $(selector);
+    if ($el.length === 0) return false;
+    var formatValue = new Intl.NumberFormat().format(value);
+    if (options.postfix) formatValue += options.postfix;
+    if (options.text) {
+        $el.text(formatValue);
+    } else {
+        $el.val(formatValue);
+    }
+    return true;
+}
+var options__rubls = {text:true, postfix:' руб.'};
 
 function calc() {
     //переменные для ипотеки
-    var ipoteka_summ = parseInt($('.ipoteka_calc_summ_realty').val()); //стоимость недвижимости
-    var ipoteka_summ_fee = parseInt($('.ipoteka_calc_summ_realty_fee').val()); //первоначальный взнос
-    var ipoteka_rate = parseFloat($('.ipoteka_calc_rate').text()); //процентная ставка
-    var ipoteka_time = parseInt($('.ipoteka_calc_time').val()); //срок ипотеки
+    var ipoteka_summ = getValue('.ipoteka_calc_summ_realty'); //стоимость недвижимости
+    var ipoteka_summ_fee = getValue('.ipoteka_calc_summ_realty_fee'); //первоначальный взнос
+    var ipoteka_rate = getValue('.ipoteka_calc_rate', options__text); //процентная ставка
+    var ipoteka_time = getValue('.ipoteka_calc_time'); //срок ипотеки
     var ipoteka_summ_total = ipoteka_summ - ipoteka_summ_fee; //сумма ипотеки
     var ipoteka_monthly_rate = ipoteka_rate / 12 / 100; //ежемесячная процентная ставка
     var ipoteka_general_rate = Math.pow(1 + ipoteka_monthly_rate, ipoteka_time); //общая ставка
 
     //переменные для кредитов
-    var credit_summ = parseInt($('.credit_calc_summ').val()); //сумма кредита
-    var credit_days = parseInt($('.credit_calc_days').val()); //срок кредита в месяцах
-    var credit_time = parseFloat($('.credit_calc_rate').text()); //процентная ставка
+    var credit_summ = getValue('.credit_calc_summ'); //сумма кредита
+    var credit_days = getValue('.credit_calc_days'); //срок кредита в месяцах
+    var credit_time = getValue('.credit_calc_rate', options__text); //процентная ставка
     var credit_persent_month = (credit_time / 12 / 100); //ежемесячная процентная ставка
     var credit_coefficients = (credit_persent_month * Math.pow(1 + credit_persent_month, credit_days)) / (Math.pow(1 + credit_persent_month, credit_days) - 1); //коэффициент аннуитета
 
     //переменные для мфо
-    var kredit_summ = parseInt($('.calc_summ').val());
-    var kredit_days = parseInt($('.calc_days').val());
-    var kredit_rate = parseFloat($('.calc_rate').text());
+    var kredit_summ = getValue('.calc_summ');
+    var kredit_days = getValue('.calc_days');
+    var kredit_rate = getValue('.calc_rate', options__text);
     var overpayment = 0; // переплата по процентам
     var overpayment_at_day = 0; // Переплата в день
     var for_return = 0; // К возврату
-    var kredit_rate_const = parseFloat($('.calc_rate_const').text()); //страница мфо
+    var kredit_rate_const = getValue('.calc_rate_const', options__text); //страница мфо
     
     $('.calc-info').text('');
 
     if (ipoteka_summ_total && ipoteka_monthly_rate && ipoteka_general_rate && ipoteka_time) {
-        ipoteka_monthly_payment = Math.ceil(ipoteka_summ_total * ipoteka_monthly_rate * ipoteka_general_rate / (ipoteka_general_rate - 1) * 100) / 100; //ежемесячный платеж
-        ipoteka_overpayment = Math.round(ipoteka_monthly_payment * ipoteka_time - ipoteka_summ_total); //переплата
-        ipoteka_total = ipoteka_summ_total + ipoteka_overpayment; //Общая сумма
+        var ipoteka_monthly_payment = Math.ceil(ipoteka_summ_total * ipoteka_monthly_rate * ipoteka_general_rate / (ipoteka_general_rate - 1) * 100) / 100; //ежемесячный платеж
+        var ipoteka_overpayment = Math.round(ipoteka_monthly_payment * ipoteka_time - ipoteka_summ_total); //переплата
+        var ipoteka_total = ipoteka_summ_total + ipoteka_overpayment; //Общая сумма
 
-        $('.ipoteka_total').text(new Intl.NumberFormat().format(ipoteka_total) + ' руб.');
-        $('.ipoteka_overpayment').text(new Intl.NumberFormat().format(ipoteka_overpayment) + ' руб.');
-        $('.ipoteka_monthly_payment').text(new Intl.NumberFormat().format(ipoteka_monthly_payment) + ' руб.');
+        setValue('.ipoteka_total',ipoteka_total,options__rubls);
+        setValue('.ipoteka_overpayment',ipoteka_overpayment,options__rubls);
+        setValue('.ipoteka_monthly_payment',ipoteka_monthly_payment,options__rubls);
     }
     else if (credit_summ && credit_days && credit_coefficients) {
-        credit_calc_monthly_payment = Math.ceil(credit_summ * credit_coefficients * 100) / 100; //ежемесячный платеж
-        credit_calc_overpayment = Math.ceil(credit_days * credit_calc_monthly_payment - credit_summ);
-        credit_calc_total = credit_summ + credit_calc_overpayment;
-        
-        $('.credit_calc_total').text(new Intl.NumberFormat().format(credit_calc_total) + ' руб.');
-        $('.credit_calc_overpayment').text(new Intl.NumberFormat().format(credit_calc_overpayment) + ' руб.');
-        $('.credit_calc_monthly_payment').text(new Intl.NumberFormat().format(credit_calc_monthly_payment) + ' руб.');
+        var credit_calc_monthly_payment = Math.ceil(credit_summ * credit_coefficients * 100) / 100; //ежемесячный платеж
+        var credit_calc_overpayment = Math.ceil(credit_days * credit_calc_monthly_payment - credit_summ);
+        var credit_calc_total = credit_summ + credit_calc_overpayment;
+
+        setValue('.credit_calc_total',credit_calc_total,options__rubls);
+        setValue('.credit_calc_overpayment',credit_calc_overpayment,options__rubls);
+        setValue('.credit_calc_monthly_payment',credit_calc_monthly_payment,options__rubls);
     }
     //это для страницы, например /mfo/credit7
     else if (kredit_summ && kredit_days && kredit_rate_const) {
@@ -66,25 +108,24 @@ function calc() {
         overpayment_at_day = Math.floor(kredit_summ * kredit_rate_const * 0.01 * 100) / 100;
         for_return = kredit_summ + parseInt(kredit_summ * kredit_rate_const * 0.01 * kredit_days);
 
-        $('.calc_overpayment').text(new Intl.NumberFormat().format(overpayment) + ' руб.');
-        $('.calc_overpayment_at_day').text(new Intl.NumberFormat().format(overpayment_at_day) + ' руб.');
-        $('.calc_return').text(new Intl.NumberFormat().format(for_return) + ' руб.');
+        setValue('.calc_overpayment',overpayment,options__rubls);
+        setValue('.calc_overpayment_at_day',overpayment_at_day,options__rubls);
+        setValue('.calc_return',for_return,options__rubls);
     }
     else if (kredit_summ && kredit_days && kredit_rate) {
         overpayment = Math.floor(kredit_summ * kredit_rate * 0.01 * kredit_days * 100) / 100;
         overpayment_at_day = Math.floor(kredit_summ * kredit_rate * 0.01 * 100) / 100;
         for_return = kredit_summ + parseInt(kredit_summ * kredit_rate * 0.01 * kredit_days);
 
-        $('.calc_overpayment').text(new Intl.NumberFormat().format(overpayment) + ' руб.');
-        $('.calc_overpayment_at_day').text(new Intl.NumberFormat().format(overpayment_at_day) + ' руб.');
-        $('.calc_return').text(new Intl.NumberFormat().format(for_return) + ' руб.');
+        setValue('.calc_overpayment',overpayment,options__rubls);
+        setValue('.calc_overpayment_at_day',overpayment_at_day,options__rubls);
+        setValue('.calc_return',for_return,options__rubls);
     }
     else {
         for_return = kredit_summ;
-        
-        $('.calc_overpayment').text(new Intl.NumberFormat().format(overpayment) + ' руб.');
-        $('.calc_overpayment_at_day').text(new Intl.NumberFormat().format(overpayment_at_day) + ' руб.');
-        $('.calc_return').text(new Intl.NumberFormat().format(for_return) + ' руб.');
+        setValue('.calc_overpayment',overpayment,options__rubls);
+        setValue('.calc_overpayment_at_day',overpayment_at_day,options__rubls);
+        setValue('.calc_return',for_return,options__rubls);
     }
 
 }
@@ -93,28 +134,28 @@ function calc() {
 function calc_mfo(e) {
     var current_calc = $(e.target).closest('.calc-total')[0];
     //переменные для мфо
-    var kredit_summ = parseInt($(current_calc).find('.calc_summ').val());
-    var kredit_days = parseInt($(current_calc).find('.calc_days').val());
-    var kredit_rate = parseFloat($(current_calc).find('.calc_rate').val());
+    var kredit_summ = getValue($(current_calc).find('.calc_summ'));
+    var kredit_days = getValue($(current_calc).find('.calc_days'));
+    var kredit_rate = getValue($(current_calc).find('.calc_rate'),options__float);
     var overpayment = 0; // переплата по процентам
     var overpayment_at_day = 0; // Переплата в день
     var for_return = 0; // К возврату
-    
+
     if (kredit_summ && kredit_days && kredit_rate) {
         overpayment = Math.floor(kredit_summ * kredit_rate * 0.01 * kredit_days * 100) / 100;
         overpayment_at_day = Math.floor(kredit_summ * kredit_rate * 0.01 * 100) / 100;
         for_return = kredit_summ + parseInt(kredit_summ * kredit_rate * 0.01 * kredit_days);
 
-        $(current_calc).find('.calc_overpayment').text(new Intl.NumberFormat().format(overpayment) + ' руб.');
-        $(current_calc).find('.calc_overpayment_at_day').text(new Intl.NumberFormat().format(overpayment_at_day) + ' руб.');
-        $(current_calc).find('.calc_return').text(new Intl.NumberFormat().format(for_return) + ' руб.');
+        setValue($(current_calc).find('.calc_overpayment'),overpayment,options__rubls);
+        setValue($(current_calc).find('.calc_overpayment_at_day'),overpayment_at_day,options__rubls);
+        setValue($(current_calc).find('.calc_return'),for_return,options__rubls);
     }
     else {
         for_return = kredit_summ;
-        
-        $(current_calc).find('.calc_overpayment').text(new Intl.NumberFormat().format(overpayment) + ' руб.');
-        $(current_calc).find('.calc_overpayment_at_day').text(new Intl.NumberFormat().format(overpayment_at_day) + ' руб.');
-        $(current_calc).find('.calc_return').text(new Intl.NumberFormat().format(for_return) + ' руб.');
+
+        setValue($(current_calc).find('.calc_overpayment'),overpayment,options__rubls);
+        setValue($(current_calc).find('.calc_overpayment_at_day'),overpayment_at_day,options__rubls);
+        setValue($(current_calc).find('.calc_return'),for_return,options__rubls);
     }
 }
 
@@ -128,20 +169,22 @@ $(function(){
 function calc_credit(e) {
     var current_calc = $(e.target).closest('.calc-total')[0];
     //переменные для кредитов
-    var credit_summ = parseInt($(current_calc).find('.credit_calc_summ').val()); //сумма кредита
-    var credit_days = parseInt($(current_calc).find('.credit_calc_days').val()); //срок кредита в месяцах
-    var credit_time = parseFloat($(current_calc).find('.credit_calc_rate').val()); //процентная ставка
+    var credit_summ = getValue($(current_calc).find('.credit_calc_summ')); //сумма кредита
+    var credit_days = getValue($(current_calc).find('.credit_calc_days')); //срок кредита в месяцах
+    var credit_time = getValue($(current_calc).find('.credit_calc_rate'),options__float); //процентная ставка
     var credit_persent_month = (credit_time / 12 / 100); //ежемесячная процентная ставка
     var credit_coefficients = (credit_persent_month * Math.pow(1 + credit_persent_month, credit_days)) / (Math.pow(1 + credit_persent_month, credit_days) - 1); //коэффициент аннуитета
 
+
     if (credit_summ && credit_days && credit_coefficients) {
-        credit_calc_monthly_payment = Math.ceil(credit_summ * credit_coefficients * 100) / 100; //ежемесячный платеж
-        credit_calc_overpayment = Math.ceil(credit_days * credit_calc_monthly_payment - credit_summ);
-        credit_calc_total = credit_summ + credit_calc_overpayment;
-        
-        $(current_calc).find('.credit_calc_total').text(new Intl.NumberFormat().format(credit_calc_total) + ' руб.');
-        $(current_calc).find('.credit_calc_overpayment').text(new Intl.NumberFormat().format(credit_calc_overpayment) + ' руб.');
-        $(current_calc).find('.credit_calc_monthly_payment').text(new Intl.NumberFormat().format(credit_calc_monthly_payment) + ' руб.');
+        var credit_calc_monthly_payment = Math.ceil(credit_summ * credit_coefficients * 100) / 100; //ежемесячный платеж
+        var credit_calc_overpayment = Math.ceil(credit_days * credit_calc_monthly_payment - credit_summ);
+        var credit_calc_total = credit_summ + credit_calc_overpayment;
+
+        setValue($(current_calc).find('.credit_calc_total'),credit_calc_total,options__rubls);
+        setValue($(current_calc).find('.credit_calc_overpayment'),credit_calc_overpayment,options__rubls);
+        setValue($(current_calc).find('.credit_calc_monthly_payment'),credit_calc_monthly_payment,options__rubls);
+
     }
 }
 
@@ -155,22 +198,22 @@ $(function(){
 function calc_ipoteka(e) {
     var current_calc = $(e.target).closest('.calc-total')[0];
     //переменные для ипотеки
-    var ipoteka_summ = parseInt($(current_calc).find('.ipoteka_calc_summ').val()); //стоимость недвижимости
-    var ipoteka_summ_fee = parseInt($(current_calc).find('.ipoteka_calc_summ_realty_fee').val()); //первоначальный взнос
-    var ipoteka_rate = parseFloat($(current_calc).find('.ipoteka_calc_rate').val()); //процентная ставка
-    var ipoteka_time = parseInt($(current_calc).find('.ipoteka_calc_time').val()); //срок ипотеки
+    var ipoteka_summ = getValue($(current_calc).find('.ipoteka_calc_summ')); //стоимость недвижимости
+    var ipoteka_summ_fee = getValue($(current_calc).find('.ipoteka_calc_summ_realty_fee')); //первоначальный взнос
+    var ipoteka_rate = getValue($(current_calc).find('.ipoteka_calc_rate'),options__float); //процентная ставка
+    var ipoteka_time = getValue($(current_calc).find('.ipoteka_calc_time')); //срок ипотеки
     var ipoteka_summ_total = ipoteka_summ - ipoteka_summ_fee; //сумма ипотеки
     var ipoteka_monthly_rate = ipoteka_rate / 12 / 100; //ежемесячная процентная ставка
     var ipoteka_general_rate = Math.pow(1 + ipoteka_monthly_rate, ipoteka_time); //общая ставка
 
     if (ipoteka_summ_total && ipoteka_monthly_rate && ipoteka_general_rate && ipoteka_time) {
-        ipoteka_monthly_payment = Math.ceil(ipoteka_summ_total * ipoteka_monthly_rate * ipoteka_general_rate / (ipoteka_general_rate - 1) * 100) / 100; //ежемесячный платеж
-        ipoteka_overpayment = Math.round(ipoteka_monthly_payment * ipoteka_time - ipoteka_summ_total); //переплата
-        ipoteka_total = ipoteka_summ_total + ipoteka_overpayment; //Общая сумма
+        var ipoteka_monthly_payment = Math.ceil(ipoteka_summ_total * ipoteka_monthly_rate * ipoteka_general_rate / (ipoteka_general_rate - 1) * 100) / 100; //ежемесячный платеж
+        var ipoteka_overpayment = Math.round(ipoteka_monthly_payment * ipoteka_time - ipoteka_summ_total); //переплата
+        var ipoteka_total = ipoteka_summ_total + ipoteka_overpayment; //Общая сумма
 
-        $(current_calc).find('.ipoteka_total').text(new Intl.NumberFormat().format(ipoteka_total) + ' руб.');
-        $(current_calc).find('.ipoteka_overpayment').text(new Intl.NumberFormat().format(ipoteka_overpayment) + ' руб.');
-        $(current_calc).find('.ipoteka_monthly_payment').text(new Intl.NumberFormat().format(ipoteka_monthly_payment) + ' руб.');
+        setValue($(current_calc).find('.ipoteka_total'),ipoteka_total,options__rubls);
+        setValue($(current_calc).find('.ipoteka_overpayment'),ipoteka_overpayment,options__rubls);
+        setValue($(current_calc).find('.ipoteka_monthly_payment'),ipoteka_monthly_payment,options__rubls);
     }
 }
 

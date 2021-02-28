@@ -179,3 +179,7 @@
 .sort .sort-value {
     padding-bottom: 5px;
 }
+.js-slider-input:focus ~ .filter-slider__visual-input {
+    background: rgb(242 248 252);
+    border-radius: 0;
+}

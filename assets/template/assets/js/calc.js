@@ -23,23 +23,20 @@ $(document).on('mse2_load', function (e, data) {
     $('.calc_summ').change();
 });
 
-calc();
 
 $('#ipoteka_calc_summ_realty_fee, #ipoteka_calc_summ_realty, #ipoteka_calc_time, #credit_calc_summ, #credit_calc_days, #calc_days, #calc_summ, #calc_rate').change(function (e) {
     calc();
 });
     
 //Калькуляторы на страницах продуктов
-function getValue(selector, options) {
-    options = options?options:{text:false, float:false};
+function getValue(selector, options ) {
+    options = options || {text:false, float:false};
     var $el = $(selector);
     if ($el.length === 0) return false;
     var realValue = (options.text)?$el.text():$el.val(),
         trimValue = realValue.replace(/\s/g, '');
     return (options.float)?parseFloat(trimValue):parseInt(trimValue);
 }
-var options__text = {text:true, float: true};
-var options__float = {text:false, float: true};
 
 function setValue(selector, value, options) {
     options = options?options:{text:false, postfix:false};
@@ -54,8 +51,12 @@ function setValue(selector, value, options) {
     }
     return true;
 }
+
+var options__text = {text:true, float: true};
+var options__float = {text:false, float: true};
 var options__rubls = {text:true, postfix:' руб.'};
 
+calc();
 function calc() {
     //переменные для ипотеки
     var ipoteka_summ = getValue('.ipoteka_calc_summ_realty'); //стоимость недвижимости
@@ -65,6 +66,7 @@ function calc() {
     var ipoteka_summ_total = ipoteka_summ - ipoteka_summ_fee; //сумма ипотеки
     var ipoteka_monthly_rate = ipoteka_rate / 12 / 100; //ежемесячная процентная ставка
     var ipoteka_general_rate = Math.pow(1 + ipoteka_monthly_rate, ipoteka_time); //общая ставка
+    console.log(ipoteka_summ,ipoteka_summ_fee,ipoteka_rate,ipoteka_time,ipoteka_summ_total,ipoteka_monthly_rate,ipoteka_general_rate);
 
     //переменные для кредитов
     var credit_summ = getValue('.credit_calc_summ'); //сумма кредита
